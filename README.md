@@ -1,0 +1,2 @@
+# data-structures_and_algorithms_java
+Code Repository to host all code with regards to the assignments and challenges for the Data Structures and Algorithms using the Java Programming Language. This code was made in reference to the book "Data Structures and Algorithms in Java A Project-Based Approach" by Dan S. Myers, Rollins College, Florida.
