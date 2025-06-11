@@ -18,5 +18,6 @@ public class MyMath {
         
         // generate a random die roll from 1 to 6 
         int roll = (int) (Math.random() * 6) + 1;
+        System.out.printf("Number of roll: %d", roll);
     }    
 }
