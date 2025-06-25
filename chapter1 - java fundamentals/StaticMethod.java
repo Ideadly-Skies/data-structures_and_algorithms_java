@@ -21,6 +21,21 @@ public class StaticMethod {
     public static boolean isEven(int n) {
         return n % 2 == 0; 
     }
+
+    /**
+     * function to rollDie n times with faces
+     * @param n
+     * @param faces
+     * @return
+     */
+    public static int rollDie(int n, int faces){
+        int sum = 0; 
+        for (int i = 0; i < n; i++){
+            sum += (int) (Math.random() * faces) + 1;
+        }
+
+        return sum;
+    }
     
     public static void main(String[] args){
 
