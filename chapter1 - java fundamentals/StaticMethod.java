@@ -12,9 +12,18 @@ public class StaticMethod {
         int die2 = dieRoll();
         return die1 + die2; 
     }
+
+    /**
+     * return if n is an even number
+     * @param n, number supplied
+     * @return boolean true/false value
+     */
+    public static boolean isEven(int n) {
+        return n % 2 == 0; 
+    }
     
     public static void main(String[] args){
-         
+
         // a class belonging to the class itself
         System.out.println(sumOfTwoDice());
     }    
