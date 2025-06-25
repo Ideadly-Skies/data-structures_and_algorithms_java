@@ -24,5 +24,7 @@ public class InputValidation {
                 response = in.next();
             }
         }
+
+        in.close();
     }    
 }
