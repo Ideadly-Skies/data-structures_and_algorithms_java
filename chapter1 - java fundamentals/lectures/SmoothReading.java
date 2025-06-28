@@ -1,3 +1,4 @@
+package lectures;
 import java.util.Scanner;
 
 public class SmoothReading {

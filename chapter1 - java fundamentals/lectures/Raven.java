@@ -1,3 +1,4 @@
+package lectures;
 public class Raven {
         
     public static void main(String[] args){

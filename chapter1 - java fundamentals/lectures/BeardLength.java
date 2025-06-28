@@ -1,3 +1,4 @@
+package lectures;
 public class BeardLength {
     public static void main(String[] args){
         double lengthInMeters = 5.18;

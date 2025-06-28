@@ -1,3 +1,4 @@
+package lectures;
 public class EqualsMethod {
     public static void main(String[] args){
         // Two strings with the same characters

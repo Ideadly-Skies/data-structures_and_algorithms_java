@@ -1,3 +1,4 @@
+package lectures;
 public class MyMath {
     public static void main(String[] args) {
         // Math.pow calculates power

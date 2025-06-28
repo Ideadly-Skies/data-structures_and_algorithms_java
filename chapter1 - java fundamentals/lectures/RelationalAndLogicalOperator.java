@@ -1,3 +1,4 @@
+package lectures;
 // class RelationalAndLogicalOperator
 public class RelationalAndLogicalOperator {
     

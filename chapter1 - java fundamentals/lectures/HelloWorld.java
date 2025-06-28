@@ -1,3 +1,4 @@
+package lectures;
 // The first program: print a hello message
 
 // All code is contained in a class

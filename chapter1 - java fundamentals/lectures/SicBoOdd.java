@@ -1,3 +1,4 @@
+package lectures;
 public class SicBoOdd {
      public static void main(String[] args){
         // constant number of trials

@@ -1,3 +1,4 @@
+package lectures;
 // Reading user input with Scanner
 import java.util.Scanner;
 

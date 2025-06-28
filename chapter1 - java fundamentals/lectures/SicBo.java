@@ -1,3 +1,4 @@
+package lectures;
 /**
  * Monte Carlo approach to estimate the probability of winning
  * the big bet in sic bo. Look at it carefully; it combines all of

@@ -1,3 +1,4 @@
+package lectures;
 public class IntroJavaDoc {
     
     /**

@@ -1,3 +1,4 @@
+package lectures;
 public class Casting {
     public static void main(String[] args) {
         int successes = 789;

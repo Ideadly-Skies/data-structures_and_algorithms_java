@@ -1,3 +1,4 @@
+package lectures;
 public class StaticMethod {
     public static double circleArea(double radius){
         return Math.pow(radius, 2) * Math.PI;
