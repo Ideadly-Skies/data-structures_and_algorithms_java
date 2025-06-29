@@ -147,25 +147,88 @@ public class Cipher {
     }
 
     public static String polybiusDecrypt(String encrypted){
-        String decoded = "";        
+        String decoded = "";
 
-        for (int i = 0; i < encrypted.length(); i += 2){
-            int row = Character.getNumericValue(encrypted.charAt(i));
-            int col = Character.getNumericValue(encrypted.charAt(i+1));
+        for(int i = 0; i < encrypted.length(); i += 2){
+            // convert string row and col to int 
+            int row = encrypted.charAt(i) - '0'; 
+            int col = encrypted.charAt(i + 1) - '0';
+
+            // calculate position
+            int position = row * 5 + col; 
             
-            // shift from 2D to 1D alphabet
-            int position = row * 5 + col;
-
-            // shift position for letters i/j above by
-            // one position
+            // letters i and above should be incremented by one
             if (position >= 9){
                 position++;
             }
 
+            // add char at position to decoded 
             decoded += ALPHABET.charAt(position);
         }
 
         return decoded;
+    }
+
+    // nihilist encrypt
+    public static String nihilistEncrypt(String plaintext, String key){
+        String nihilistEncryption = "";
+
+        // iterate through each character in plaintext
+        for(int i = 0; i < plaintext.length(); i++){
+            char ch = plaintext.charAt(i); 
+            
+            int keyIndex = (i % key.length()); 
+            char keyAtIndex = key.charAt(keyIndex);
+
+            // encrypt plaintext char and keyAtIndex with polybius 
+            // 
+            // store results in a temporary variable 
+            String tempTextEncrypt = Character.toString(ch);
+            String tempKeyEncrypt = Character.toString(keyAtIndex);
+
+            String plainTextEncrypted = polybiusEncrypt(tempTextEncrypt);
+            String tempKeyEncrypted = polybiusEncrypt(tempKeyEncrypt); 
+            
+            // sum both plainTextEncrypted with keyEncrypted
+            // 
+            // to provide the ith value of the nihilist encryption 
+            int cipher = Integer.parseInt(plainTextEncrypted) + Integer.parseInt(tempKeyEncrypted);
+
+            // encrypt the letter and append it to the output
+            // single-digit numbers get a leading zero
+            if (cipher < 10){
+                nihilistEncryption += "0";
+            }
+
+            nihilistEncryption += Integer.toString(cipher); 
+        }
+
+        return nihilistEncryption;
+    }
+
+    // nihilist decrypt
+    public static String nihilistDecrypt(String encryption, String key){
+        String output = "";        
+
+        // iterate through each encryption digit pair
+        for (int i = 0; i < encryption.length(); i += 2){
+
+            int keyIndex = (i % key.length());
+            char keyValue = key.charAt(keyIndex);
+
+            // ecnrypt key to nihilist encryption
+            int keyEncryption = Integer.parseInt(polybiusEncrypt(Character.toString(keyValue))); 
+            
+            // subtract encrypted pair with key encryption
+            int originalEncryption = Integer.parseInt(Character.toString(encryption.charAt(i))
+            + Character.toString(encryption.charAt(i+1))) - keyEncryption;
+
+            System.out.printf("original encryption: %d\n", originalEncryption);
+
+            output = vigenereDecrypt(Integer.toString(originalEncryption), key);
+        }
+
+        return output;
     }
 
     /**
@@ -173,7 +236,6 @@ public class Cipher {
      * @param args
     */
     public static void main(String[] args){
-        
         String message = "TRAVELEAST";        
         int rotation = 3;
         
@@ -186,7 +248,6 @@ public class Cipher {
         // Decrypt the cipher
         String decrypted = decrypt(cipher, rotation);
         System.out.printf("%s: %s\n", "The decrypted message: ", decrypted);
-
 
         // Vigenere decryption 
         message = "TRAVELEAST";
@@ -207,6 +268,13 @@ public class Cipher {
         System.out.printf("%s: %s\n", "The encrypted message: ", cipher);
 
         decrypted = polybiusDecrypt(cipher);
+        System.out.printf("%s: %s\n", "The decrypted message: ", decrypted);
+
+        // nihilist encrypt
+        String nihilist = nihilistEncrypt(message, key);
+        System.out.printf("%s: %s\n", "The encrypted message: ", nihilist);
+        
+        decrypted = nihilistDecrypt(nihilist, key);
         System.out.printf("%s: %s\n", "The decrypted message: ", decrypted);
     }
 }
