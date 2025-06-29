@@ -170,8 +170,9 @@ public class Cipher {
     }
 
     // nihilist encrypt
-    public static String nihilistEncrypt(String plaintext, String key){
+    public static String[] nihilistEncrypt(String plaintext, String key){
         String nihilistEncryption = "";
+        String keyEncryption = "";
 
         // iterate through each character in plaintext
         for(int i = 0; i < plaintext.length(); i++){
@@ -200,35 +201,39 @@ public class Cipher {
                 nihilistEncryption += "0";
             }
 
-            nihilistEncryption += Integer.toString(cipher); 
+            nihilistEncryption += Integer.toString(cipher);
+            
+            // construct keyEncryption string
+            // if (Integer.parseInt(tempKeyEncrypted) <= 0) {
+            //     keyEncryption += "0";
+            // }
+
+            keyEncryption += tempKeyEncrypted;
         }
 
-        return nihilistEncryption;
+        return new String[]{nihilistEncryption, keyEncryption};
     }
 
     // nihilist decrypt
-    public static String nihilistDecrypt(String encryption, String key){
-        String output = "";        
-
+    public static String nihilistDecrypt(String encryption, String keyEncryption){
+        String originalEncryptionStr = ""; 
+        
         // iterate through each encryption digit pair
         for (int i = 0; i < encryption.length(); i += 2){
-
-            int keyIndex = (i % key.length());
-            char keyValue = key.charAt(keyIndex);
-
-            // ecnrypt key to nihilist encryption
-            int keyEncryption = Integer.parseInt(polybiusEncrypt(Character.toString(keyValue))); 
-            
             // subtract encrypted pair with key encryption
-            int originalEncryption = Integer.parseInt(Character.toString(encryption.charAt(i))
-            + Character.toString(encryption.charAt(i+1))) - keyEncryption;
+            String encryptionPair = Character.toString(encryption.charAt(i)) + Character.toString(encryption.charAt(i+1)); 
+            String keyEncryptionPair = Character.toString(keyEncryption.charAt(i)) + Character.toString(keyEncryption.charAt(i+1));
 
-            System.out.printf("original encryption: %d\n", originalEncryption);
+            int originalEncryption = Integer.parseInt(encryptionPair) - Integer.parseInt(keyEncryptionPair);
+            if (originalEncryption < 10){
+                originalEncryptionStr += "0";
+            }
 
-            output = vigenereDecrypt(Integer.toString(originalEncryption), key);
+            originalEncryptionStr += Integer.toString(originalEncryption);
         }
 
-        return output;
+        // convert to original string using polybius decrypt
+        return polybiusDecrypt(originalEncryptionStr);
     }
 
     /**
@@ -271,10 +276,11 @@ public class Cipher {
         System.out.printf("%s: %s\n", "The decrypted message: ", decrypted);
 
         // nihilist encrypt
-        String nihilist = nihilistEncrypt(message, key);
+        String nihilist = nihilistEncrypt(message, key)[0];
+        String keyEncryption = nihilistEncrypt(message, key)[1];
         System.out.printf("%s: %s\n", "The encrypted message: ", nihilist);
-        
-        decrypted = nihilistDecrypt(nihilist, key);
+
+        decrypted = nihilistDecrypt(nihilist, keyEncryption);
         System.out.printf("%s: %s\n", "The decrypted message: ", decrypted);
     }
 }
