@@ -115,6 +115,60 @@ public class Cipher {
     }
 
     /**
+     * Polybius encoding
+     * 
+     * @param plaintext the input string
+     * @return the plaintext encoded using the standard English square
+     */
+    public static String polybiusEncrypt(String plaintext){
+        String output = "";
+
+        for (int i = 0; i < plaintext.length(); i++){
+            // determine the alphabet position of letter i
+            char ch = plaintext.charAt(i);
+            int index = ALPHABET.indexOf(ch);
+
+            // letters j or higher are shifted down by one position
+            if (index >= 9){
+                index--;
+            }
+
+            // calculate row and col 
+            int row = index / 5;
+            int col = index % 5;
+
+            // append to output
+            // Integer.toString() converts an int to a string
+            output += Integer.toString(row);            
+            output += Integer.toString(col); 
+        }
+
+        return output;
+    }
+
+    public static String polybiusDecrypt(String encrypted){
+        String decoded = "";        
+
+        for (int i = 0; i < encrypted.length(); i += 2){
+            int row = Character.getNumericValue(encrypted.charAt(i));
+            int col = Character.getNumericValue(encrypted.charAt(i+1));
+            
+            // shift from 2D to 1D alphabet
+            int position = row * 5 + col;
+
+            // shift position for letters i/j above by
+            // one position
+            if (position >= 9){
+                position++;
+            }
+
+            decoded += ALPHABET.charAt(position);
+        }
+
+        return decoded;
+    }
+
+    /**
      * main -- entry point for the application
      * @param args
     */
@@ -146,6 +200,13 @@ public class Cipher {
         
         // decrypt the message
         decrypted = vigenereDecrypt(cipher, key);
+        System.out.printf("%s: %s\n", "The decrypted message: ", decrypted);
+
+        // Polybius Square
+        cipher = polybiusEncrypt(message); 
+        System.out.printf("%s: %s\n", "The encrypted message: ", cipher);
+
+        decrypted = polybiusDecrypt(cipher);
         System.out.printf("%s: %s\n", "The decrypted message: ", decrypted);
     }
 }
