@@ -202,12 +202,6 @@ public class Cipher {
             }
 
             nihilistEncryption += Integer.toString(cipher);
-            
-            // construct keyEncryption string
-            // if (Integer.parseInt(tempKeyEncrypted) <= 0) {
-            //     keyEncryption += "0";
-            // }
-
             keyEncryption += tempKeyEncrypted;
         }
 
