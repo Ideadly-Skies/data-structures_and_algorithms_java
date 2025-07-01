@@ -5,7 +5,7 @@ package chapter2.examples;
  */
 public class Book {
     // Declare instance variables of the class
-    String author; 
-    String title;
-    double price;
+    public String author;  
+    public String title;
+    public double price;
 }
