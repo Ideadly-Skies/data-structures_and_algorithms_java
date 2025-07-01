@@ -8,6 +8,6 @@ public class Accumulator {
             } 
         }
         
-        System.out.printf("Sum of all even numbers from 1 to 100 is %d\n", sum);        
+        System.out.printf("Sum of all even numbers from 1 to 100 is %d\n", sum);
     }    
 }
