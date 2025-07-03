@@ -12,8 +12,11 @@ public class BookDriver {
     // unless you add the public keyword specifier before the type
     public static void main(String[] args){
         // Create a new Book object
-        Book prideAndPrejudice = new Book("Sydney Khosasih", "Price and Prejudice", 9.99);
-        
+        Book prideAndPrejudice = new Book("Sydney Khosasih", "Price and Prejudice", 9.99, "Horror");
+        double prideAndPrejudicePrice = prideAndPrejudice.getPrice();
+
+        System.out.printf("pride and prejudice has the following price: $%.2f\n",prideAndPrejudicePrice);
+
         // Assign values to its instance variables using dot notation
         // prideAndPrejudice.author = "Sydney Khosasih";
         // prideAndPrejudice.title = "Pride and Prejudice"; 
@@ -23,7 +26,7 @@ public class BookDriver {
         // System.out.printf("The book %s is written by %s and cost $%.2f\n",prideAndPrejudice.title, prideAndPrejudice.author, prideAndPrejudice.price);
 
         // create a new Book object
-        Book algorithmsAndDataStructure = new Book("Jay Wengrow", "A Common-Sense Guide to Data Structures and Algorithms in Python, Volume 1: Level Up Your Core Programming Skills", 91.54);
+        Book algorithmsAndDataStructure = new Book("Jay Wengrow", "A Common-Sense Guide to Data Structures and Algorithms in Python, Volume 1: Level Up Your Core Programming Skills", 91.54, "Education");
 
         // assign values to its instance variables using dot notation
         // algorithmsAndDataStructure.author = "Jay Wengrow";
