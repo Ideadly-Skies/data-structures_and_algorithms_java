@@ -33,14 +33,16 @@ public class Deck {
      * @return the first Card in this Deck
      */
     public Card deal(){
-        return null;         
+        // remove the last element from deck ArrayList
+        // more efficient than removing the first element 
+        return this.deck.remove(this.deck.size()-1);
     }
 
     /**
      * Randomly permute the Card in this Deck 
      */
     public void shuffle(){
-
+        Collections.shuffle(this.deck);
     }
 
     /**  
@@ -48,6 +50,6 @@ public class Deck {
      * @return a String listing all cards in the Deck
      * */ 
     public String toString(){
-        return null;         
+        return this.deck.toString();
     }
 }
