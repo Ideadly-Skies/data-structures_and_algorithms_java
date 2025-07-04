@@ -7,7 +7,7 @@ package chapter2.project;
 */
 public class Card {
     
-    public enum SUIT {
+    public enum Suit {
         CLUBS, DIAMONDS, HEARTS, SPADES;
     }
     
@@ -15,7 +15,7 @@ public class Card {
         ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING; 
     }
     // private attributes of class
-    private SUIT suit;
+    private Suit suit;
     private Rank rank;
 
     /**
@@ -24,11 +24,27 @@ public class Card {
      * @param newSuit Suit for this new Card
      * @param newRank Rank for this new Card
      */
-    public Card(SUIT newSuit, Rank newRank){
+    public Card(Suit newSuit, Rank newRank){
         this.suit = newSuit;
         this.rank = newRank;
     }
 
+    /**
+     * Return the SUIT of this Card
+     * @return Suit for this card 
+     */
+    public Suit getSuit(){
+        return this.suit;
+    }
+
+    /**
+     * Return the RANK of this card
+     * @return Rank for this card
+     */
+    public Rank getRank(){
+        return this.rank;
+    }
+    
     /**
      * Return a string representation of this Card
      * 
