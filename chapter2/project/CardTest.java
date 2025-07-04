@@ -9,6 +9,6 @@ public class CardTest {
         Card queenOfHearts = new Card(Suit.HEARTS, Rank.QUEEN);
 
         System.out.println(aceOfSpades);
-        System.out.println(queenOfHearts); 
-    }    
+        System.out.println(queenOfHearts);
+    }
 }
