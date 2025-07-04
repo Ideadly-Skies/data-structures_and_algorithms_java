@@ -49,10 +49,10 @@ public class Book {
     }
 
     // setter methods
-    public void setPrice(double newPrice){
+    public void setPrice(double newPrice) throws IllegalArgumentException {
         // ignore negative prices
         if (newPrice < 0.0){
-            return;
+            throw new IllegalArgumentException("setPrice: negative input");
         }
 
         // set the new price
